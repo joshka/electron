@@ -115,6 +115,8 @@ DialogInfo GetDialogInfo(char* handle, size_t size) {
       NSString* title = [[buttons objectAtIndex:i] title];
       btn_json += [title UTF8String] ?: "";
       btn_json += "\"";
+      if ([[buttons objectAtIndex:i] hasDestructiveAction])
+        info.destructive_button_id = i;
     }
     btn_json += "]";
     info.buttons = btn_json;

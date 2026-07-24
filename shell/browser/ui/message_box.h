@@ -31,6 +31,8 @@ struct MessageBoxSettings {
   std::vector<std::string> buttons;
   std::optional<int> id;
   int default_id;
+  // Only used by the macOS implementation.
+  int destructive_id = -1;
   int cancel_id;
   bool no_link = false;
   std::string title;

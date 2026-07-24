@@ -475,6 +475,27 @@ describe('dialog module', () => {
           expect(result.response).to.equal(2);
         });
 
+        it('marks the destructiveId button as destructive', async () => {
+          const w = new BrowserWindow({ show: false });
+          const p = dialog.showMessageBox(w, {
+            message: 'Destructive button test',
+            buttons: ['Save', "Don't Save", 'Cancel'],
+            defaultId: 0,
+            destructiveId: 1,
+            cancelId: 2
+          });
+
+          await waitForSheet(w);
+          const handle = w.getNativeWindowHandle();
+          const info = dialogHelper.getDialogInfo(handle);
+
+          expect(info.destructiveButtonId).to.equal(1);
+
+          dialogHelper.clickMessageBoxButton(handle, 1);
+          const result = await p;
+          expect(result.response).to.equal(1);
+        });
+
         it('respects cancelId and returns it when cancelled via signal', async () => {
           const controller = new AbortController();
           const w = new BrowserWindow({ show: false });

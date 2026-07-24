@@ -300,6 +300,9 @@ added:
     will result in one button labeled "OK".
   * `defaultId` Integer (optional) - Index of the button in the buttons array which will
     be selected by default when the message box opens.
+  * `destructiveId` Integer (optional) _macOS_ - Index of the button in the buttons array
+    which is marked as a destructive action. The button's appearance and keyboard
+    behavior depend on the version of macOS.
   * `title` string (optional) - Title of the message box, some platforms will not show it.
   * `detail` string (optional) - Extra information of the message.
   * `icon` ([NativeImage](native-image.md) | string) (optional)
@@ -356,6 +359,9 @@ changes:
     will result in one button labeled "OK".
   * `defaultId` Integer (optional) - Index of the button in the buttons array which will
     be selected by default when the message box opens.
+  * `destructiveId` Integer (optional) _macOS_ - Index of the button in the buttons array
+    which is marked as a destructive action. The button's appearance and keyboard
+    behavior depend on the version of macOS.
   * `signal` AbortSignal (optional) - Pass an instance of [AbortSignal][] to
     optionally close the message box, the message box will behave as if it was
     cancelled by the user. On macOS, `signal` does not work with message boxes

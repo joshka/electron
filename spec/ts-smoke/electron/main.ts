@@ -547,8 +547,8 @@ dialog
   });
 
 // variants without browserWindow
-dialog.showMessageBox({ message: 'test', type: 'warning' });
-dialog.showMessageBoxSync({ message: 'test', type: 'error' });
+dialog.showMessageBox({ message: 'test', type: 'warning', destructiveId: 0 });
+dialog.showMessageBoxSync({ message: 'test', type: 'error', destructiveId: 0 });
 
 // @ts-expect-error Invalid type value
 dialog.showMessageBox({ message: 'test', type: 'foo' });

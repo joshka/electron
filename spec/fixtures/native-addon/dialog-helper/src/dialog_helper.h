@@ -11,6 +11,8 @@ struct DialogInfo {
   std::string type;
   // Button titles for message boxes
   std::string buttons;  // JSON array string, e.g. '["OK","Cancel"]'
+  // Index of the button marked as destructive, or -1 if none
+  int destructive_button_id = -1;
   // Message text (NSAlert messageText or panel title)
   std::string message;
   // Detail / informative text (NSAlert informativeText)

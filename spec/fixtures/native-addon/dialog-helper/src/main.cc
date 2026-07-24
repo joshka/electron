@@ -47,6 +47,11 @@ napi_value GetDialogInfo(napi_env env, napi_callback_info info) {
   napi_create_string_utf8(env, di.buttons.c_str(), di.buttons.size(), &buttons_val);
   napi_set_named_property(env, result, "buttons", buttons_val);
 
+  napi_value destructive_button_id_val;
+  napi_create_int32(env, di.destructive_button_id, &destructive_button_id_val);
+  napi_set_named_property(env, result, "destructiveButtonId",
+                          destructive_button_id_val);
+
   napi_value message_val;
   napi_create_string_utf8(env, di.message.c_str(), di.message.size(), &message_val);
   napi_set_named_property(env, result, "message", message_val);

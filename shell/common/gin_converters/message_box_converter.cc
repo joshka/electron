@@ -24,6 +24,7 @@ bool Converter<electron::MessageBoxSettings>::FromV8(
   dict.Get("buttons", &out->buttons);
   dict.GetOptional("id", &out->id);
   dict.Get("defaultId", &out->default_id);
+  dict.Get("destructiveId", &out->destructive_id);
   dict.Get("cancelId", &out->cancel_id);
   dict.Get("title", &out->title);
   dict.Get("message", &out->message);

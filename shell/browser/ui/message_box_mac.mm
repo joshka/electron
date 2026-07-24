@@ -65,6 +65,11 @@ NSAlert* CreateNSAlert(const MessageBoxSettings& settings) {
   NSArray<NSButton*>* ns_buttons = [alert buttons];
   int button_count = static_cast<int>([ns_buttons count]);
 
+  if (settings.destructive_id >= 0 && settings.destructive_id < button_count) {
+    [[ns_buttons objectAtIndex:settings.destructive_id]
+        setHasDestructiveAction:YES];
+  }
+
   if (settings.default_id >= 0 && settings.default_id < button_count) {
     // The first button added gets set as the default selected, so remove
     // that and set the button @ default_id to be default.
