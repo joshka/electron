@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Destructive Message Box Demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: system-ui, sans-serif;
+      }
+
+      body {
+        margin: 0 auto;
+        max-width: 640px;
+        padding: 40px;
+      }
+
+      button {
+        font: inherit;
+        margin: 0 8px 8px 0;
+        padding: 8px 14px;
+      }
+
+      #result {
+        border: 1px solid currentColor;
+        border-radius: 4px;
+        min-height: 1.5em;
+        padding: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Native destructive action</h1>
+    <p>
+      Both variants use <code>Save</code>, <code>Don't Save</code>, and <code>Cancel</code>, with
+      <code>defaultId: 0</code> and <code>cancelId: 2</code>. The destructive variant also uses
+      <code>destructiveId: 1</code>.
+    </p>
+    <p>Open a fresh dialog before every keyboard test.</p>
+    <button id="baseline" type="button">Open baseline</button>
+    <button id="destructive" type="button">Open destructive variant</button>
+    <h2>Last response</h2>
+    <p id="result">No response yet.</p>
+    <script src="renderer.js"></script>
+  </body>
+</html>
