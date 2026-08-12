@@ -1874,14 +1874,11 @@ void ConfigureHostResolver(v8::Isolate* isolate,
 
 // static
 App* App::Get() {
-  return Create(nullptr);
-}
-
-// static
-App* App::Create(v8::Isolate* isolate) {
-  static base::NoDestructor<cppgc::Persistent<App>> instance(
-      cppgc::MakeGarbageCollected<App>(
-          isolate->GetCppHeap()->GetAllocationHandle()));
+  static base::NoDestructor<cppgc::Persistent<App>> instance([] {
+    v8::Isolate* const isolate = JavascriptEnvironment::GetIsolate();
+    return cppgc::Persistent<App>(cppgc::MakeGarbageCollected<App>(
+        isolate->GetCppHeap()->GetAllocationHandle()));
+  }());
   return instance->Get();
 }
 
@@ -2088,7 +2085,7 @@ void Initialize(v8::Local<v8::Object> exports,
                 void* priv) {
   v8::Isolate* const isolate = electron::JavascriptEnvironment::GetIsolate();
   gin_helper::Dictionary dict{isolate, exports};
-  dict.Set("app", electron::api::App::Create(isolate));
+  dict.Set("app", electron::api::App::Get());
 }
 
 }  // namespace
